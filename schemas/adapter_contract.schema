@@ -1,0 +1,137 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://example.org/lopas/schemas/adapter_contract.schema.yaml"
+title: "LoPAS Adapter Contract"
+type: object
+additionalProperties: false
+required:
+  - adapter_id
+  - version
+  - source_system
+  - output_contract
+  - transformation
+  - trust
+
+properties:
+  adapter_id:
+    type: string
+
+  version:
+    type: string
+
+  source_system:
+    type: object
+    additionalProperties: true
+    required:
+      - provider_id
+      - source_type
+    properties:
+      provider_id:
+        type: string
+      source_type:
+        type: string
+        enum:
+          - api
+          - json
+          - yaml
+          - csv
+          - database
+          - telemetry
+          - manual
+          - simulated
+          - other
+      source_schema_ref:
+        type: [string, "null"]
+      poll_interval_seconds:
+        type: [integer, "null"]
+
+  output_contract:
+    type: object
+    additionalProperties: false
+    required:
+      - schema
+    properties:
+      schema:
+        type: string
+        const: capability.schema.yaml
+      resource_types:
+        type: array
+        items:
+          type: string
+      semantic_profile:
+        type: [string, "null"]
+
+  transformation:
+    type: object
+    additionalProperties: true
+    required:
+      - mapping_version
+    properties:
+      mapping_version:
+        type: string
+      field_map:
+        type: object
+        additionalProperties:
+          type: string
+      unit_conversions:
+        type: object
+        additionalProperties:
+          type: string
+      derived_fields:
+        type: object
+        additionalProperties:
+          type: string
+      unknown_policy:
+        type: string
+        enum:
+          - preserve_as_unknown
+          - reject_missing
+          - allow_partial
+
+  disclosure:
+    type: object
+    additionalProperties: false
+    properties:
+      public_fields:
+        type: array
+        items:
+          type: string
+      partner_fields:
+        type: array
+        items:
+          type: string
+      private_fields:
+        type: array
+        items:
+          type: string
+      encrypt_private_payload:
+        type: boolean
+
+  trust:
+    type: object
+    additionalProperties: false
+    required:
+      - signer_required
+      - hash_required
+    properties:
+      signer_required:
+        type: boolean
+      hash_required:
+        type: boolean
+      signature_algorithm:
+        type: [string, "null"]
+      canonicalization:
+        type: [string, "null"]
+      attestor_required:
+        type: boolean
+
+  runtime:
+    type: object
+    additionalProperties: true
+    properties:
+      enabled:
+        type: boolean
+      fail_closed:
+        type: boolean
+      last_verified_at:
+        type: [string, "null"]
+        format: date-time
