@@ -1,0 +1,37 @@
+workload_id: wl-001
+requester_id: demo-customer
+workload_type: inference
+requirements:
+  compute:
+    gpu_model: H200
+    gpu_count: 16
+    estimated_energy_kwh: 450
+    runtime_minutes: 90
+  network:
+    max_latency_ms: 30
+    min_bandwidth_gbps: 50
+  storage:
+    required_gb: 500
+  power:
+    max_power_kw: 800
+  carbon:
+    max_carbon_intensity_gco2_per_kwh: 300
+timing:
+  submitted_at: '2026-08-14T09:00:00+09:00'
+  earliest_start: '2026-08-14T09:05:00+09:00'
+  deadline: '2026-08-14T12:00:00+09:00'
+  max_deferral_minutes: 30
+mobility:
+  movable: true
+  interruptible: true
+  allowed_regions:
+  - tokyo
+  - hokkaido
+  - kyushu
+  prohibited_regions: []
+  data_residency: japan
+economics:
+  max_total_cost_jpy: 250000
+provenance:
+  source_type: simulated
+  source_id: demo
