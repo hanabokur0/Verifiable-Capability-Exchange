@@ -1,0 +1,10 @@
+provider: KYUSHU-RE-MOCK
+region: kyushu
+timestamp: 2026-08-14T09:00:00+09:00
+renewable_surplus_kw: 1200
+carbon_intensity_gco2_kwh: 110
+gpu_available: 16
+gpu_model: H200
+latency_to_tokyo_ms: 28
+status: available
+verification: simulated
