@@ -1,0 +1,47 @@
+settlement_evidence_id: settle-001
+workload_ref: wl-001
+route_ref: route-001
+execution_receipt_refs:
+- receipt-route-001
+usage:
+  compute:
+    gpu_seconds: 86400
+    gpu_model: H200
+  energy:
+    kwh: 438.0
+    peak_kw: 310.0
+  storage:
+    discharged_kwh: 120.0
+    charged_kwh: 0.0
+  network:
+    transferred_gb: 820.0
+    average_latency_ms: 18.4
+impact:
+  grid_contribution_kwh: 120.0
+  curtailed_or_shifted_kwh: 438.0
+  cost_before_jpy: null
+  cost_after_jpy: null
+  carbon_before_kg: null
+  carbon_after_kg: null
+valuation:
+  compute_value_jpy: null
+  energy_value_jpy: null
+  storage_value_jpy: null
+  network_value_jpy: null
+  grid_service_value_jpy: null
+  carbon_value_jpy: null
+  total_value_jpy: null
+evidence:
+  evidence_refs:
+  - receipt-route-001
+  measurement_window_start: '2026-08-14T09:05:00+09:00'
+  measurement_window_end: '2026-08-14T10:35:00+09:00'
+  attestors:
+  - simulated-meter
+  - simulated-gpu-monitor
+verification:
+  status: simulated
+  discrepancy: {}
+  settlement_ready: false
+  verifier_id: reference-verifier
+  evidence_hash: sha256:ca3427c1a1d99220685990e7be062891fdab9ded87768f454f2e1e204e88bcc1
