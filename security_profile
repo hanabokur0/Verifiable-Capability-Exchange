@@ -1,0 +1,17 @@
+profile_id: lopas-security-v0.3
+canonicalization:
+  algorithm: canonical-json-sorted-v1
+signature:
+  algorithm: Ed25519
+  public_key_encoding: raw-base64
+  signature_encoding: base64
+encryption:
+  algorithm: AES-256-GCM
+  nonce_encoding: base64
+  ciphertext_encoding: base64
+  key_management: local-demo-key
+hash_chain:
+  algorithm: SHA-256
+  link_field: previous_receipt_hash
+timestamp:
+  mode: local
