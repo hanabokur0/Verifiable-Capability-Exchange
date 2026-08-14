@@ -1,0 +1,11 @@
+provider: HOKKAIDO-NODE-MOCK
+region: hokkaido
+timestamp: 2026-08-14T09:00:00+09:00
+gpu_model: H200
+gpu_available: 64
+grid_available_kw: 1800
+bess_available_kwh: 2400
+network_gbps: 100
+latency_to_tokyo_ms: 18
+status: available
+verification: simulated
