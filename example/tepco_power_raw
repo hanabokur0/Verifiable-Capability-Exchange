@@ -1,0 +1,8 @@
+provider: TEPCO-PG-MOCK
+area: tokyo
+timestamp: 2026-08-14T09:00:00+09:00
+additional_load_kw: 850
+valid_minutes: 60
+interruptible: true
+status: available
+verification: simulated
