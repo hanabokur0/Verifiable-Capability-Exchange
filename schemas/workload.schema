@@ -1,0 +1,153 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://example.org/lopas/schemas/workload.schema.yaml"
+title: "LoPAS Workload Request"
+type: object
+additionalProperties: false
+required:
+  - workload_id
+  - workload_type
+  - requirements
+  - timing
+  - mobility
+  - provenance
+
+properties:
+  workload_id:
+    type: string
+
+  requester_id:
+    type: [string, "null"]
+
+  workload_type:
+    type: string
+    enum:
+      - training
+      - inference
+      - batch
+      - realtime
+      - data_processing
+      - other
+
+  requirements:
+    type: object
+    additionalProperties: true
+    required:
+      - compute
+    properties:
+      compute:
+        type: object
+        additionalProperties: true
+        properties:
+          gpu_model:
+            type: [string, "null"]
+          gpu_count:
+            type: [integer, "null"]
+            minimum: 0
+          vram_gb:
+            type: [number, "null"]
+          estimated_energy_kwh:
+            type: [number, "null"]
+          runtime_minutes:
+            type: [number, "null"]
+      network:
+        type: object
+        additionalProperties: true
+        properties:
+          max_latency_ms:
+            type: [number, "null"]
+          min_bandwidth_gbps:
+            type: [number, "null"]
+          max_packet_loss:
+            type: [number, "null"]
+      storage:
+        type: object
+        additionalProperties: true
+        properties:
+          required_gb:
+            type: [number, "null"]
+          read_write_class:
+            type: [string, "null"]
+      power:
+        type: object
+        additionalProperties: true
+        properties:
+          max_power_kw:
+            type: [number, "null"]
+          preferred_power_source:
+            type: [string, "null"]
+      carbon:
+        type: object
+        additionalProperties: true
+        properties:
+          max_carbon_intensity_gco2_per_kwh:
+            type: [number, "null"]
+
+  timing:
+    type: object
+    additionalProperties: false
+    required:
+      - submitted_at
+    properties:
+      submitted_at:
+        type: string
+        format: date-time
+      earliest_start:
+        type: [string, "null"]
+        format: date-time
+      deadline:
+        type: [string, "null"]
+        format: date-time
+      max_deferral_minutes:
+        type: [number, "null"]
+
+  mobility:
+    type: object
+    additionalProperties: false
+    required:
+      - movable
+      - interruptible
+    properties:
+      movable:
+        type: boolean
+      interruptible:
+        type: boolean
+      allowed_regions:
+        type: array
+        items:
+          type: string
+      prohibited_regions:
+        type: array
+        items:
+          type: string
+      data_residency:
+        type: [string, "null"]
+
+  economics:
+    type: object
+    additionalProperties: true
+    properties:
+      max_total_cost_jpy:
+        type: [number, "null"]
+      max_compute_cost_jpy:
+        type: [number, "null"]
+      max_energy_cost_jpy:
+        type: [number, "null"]
+
+  provenance:
+    type: object
+    additionalProperties: false
+    required:
+      - source_type
+    properties:
+      source_type:
+        type: string
+        enum:
+          - user
+          - application
+          - scheduler
+          - simulated
+          - imported
+      source_id:
+        type: [string, "null"]
+      signature:
+        type: [string, "null"]
