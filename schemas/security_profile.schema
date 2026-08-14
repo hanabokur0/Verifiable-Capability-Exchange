@@ -1,0 +1,91 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://example.org/lopas/schemas/security_profile.schema.yaml"
+title: "LoPAS Security Profile"
+type: object
+additionalProperties: false
+required:
+  - profile_id
+  - canonicalization
+  - signature
+  - encryption
+  - hash_chain
+
+properties:
+  profile_id:
+    type: string
+
+  canonicalization:
+    type: object
+    additionalProperties: false
+    required: [algorithm]
+    properties:
+      algorithm:
+        type: string
+        enum:
+          - canonical-json-sorted-v1
+
+  signature:
+    type: object
+    additionalProperties: false
+    required: [algorithm]
+    properties:
+      algorithm:
+        type: string
+        enum:
+          - Ed25519
+      public_key_encoding:
+        type: string
+        enum:
+          - raw-base64
+      signature_encoding:
+        type: string
+        enum:
+          - base64
+
+  encryption:
+    type: object
+    additionalProperties: false
+    required: [algorithm]
+    properties:
+      algorithm:
+        type: string
+        enum:
+          - AES-256-GCM
+      nonce_encoding:
+        type: string
+        enum:
+          - base64
+      ciphertext_encoding:
+        type: string
+        enum:
+          - base64
+      key_management:
+        type: string
+        enum:
+          - local-demo-key
+          - external-kms
+          - partner-key-exchange
+
+  hash_chain:
+    type: object
+    additionalProperties: false
+    required: [algorithm, link_field]
+    properties:
+      algorithm:
+        type: string
+        enum:
+          - SHA-256
+      link_field:
+        type: string
+        const: previous_receipt_hash
+
+  timestamp:
+    type: object
+    additionalProperties: true
+    properties:
+      mode:
+        type: string
+        enum:
+          - local
+          - rfc3161
+          - external-anchor
