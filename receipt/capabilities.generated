@@ -1,0 +1,222 @@
+- capability_id: cap-tepco-power-001
+  resource_type: power
+  provider:
+    provider_id: TEPCO-PG-MOCK
+    operator_name: null
+    adapter_id: adapter-tepco-mock
+    adapter_version: 0.1.0
+  location:
+    region: tokyo
+    zone: null
+    site_id: null
+    grid_area: tokyo
+    jurisdiction: JP
+  availability:
+    state: available
+    quantity: 850
+    unit: kW
+    valid_from: &id001 2026-08-14 09:00:00+09:00
+    valid_until: '2026-08-14T10:00:00+09:00'
+    observed_at: *id001
+  semantics:
+    capability: additional_load_acceptable
+    availability_definition: schedulable_now
+    interruptible: true
+    deferrable: null
+    movable: null
+    latency_class: null
+    confidence: 1.0
+    unknown_fields: []
+  constraints: {}
+  provenance:
+    source_type: simulated
+    source_id: tepco_power_raw.yaml
+    source_uri: null
+    observed_by: demo-adapter
+  verification:
+    status: simulated
+    evidence_refs:
+    - tepco_power_raw.yaml
+    semantic_hash: sha256:bb0667e4e4456e677941044924ad16ceee3942b0e97bb6f67c035a85a9d2295a
+    payload_hash: sha256:fb14e01b92c8b341f59481f62676efee316576c0c3a7e608b365e046202e7e22
+    signature: null
+- capability_id: cap-ntt-gpu-mock-compute
+  resource_type: compute
+  provider:
+    provider_id: NTT-GPU-MOCK
+    operator_name: null
+    adapter_id: demo-adapter
+    adapter_version: 0.1.0
+  location:
+    region: tokyo
+    zone: null
+    site_id: null
+    grid_area: tokyo
+    jurisdiction: JP
+  availability:
+    state: available
+    quantity: 24
+    unit: gpu
+    valid_from: &id002 2026-08-14 09:00:00+09:00
+    valid_until: null
+    observed_at: *id002
+  semantics:
+    capability: schedulable_gpu
+    availability_definition: schedulable_now
+    interruptible: true
+    deferrable: true
+    movable: true
+    latency_class: low
+    confidence: 1.0
+    unknown_fields: []
+  constraints:
+    gpu_model: H200
+    network_gbps: 100
+    latency_to_tokyo_ms: null
+    carbon_intensity_gco2_kwh: null
+  provenance:
+    source_type: simulated
+    source_id: ntt_gpu_raw.yaml
+    source_uri: null
+    observed_by: demo-adapter
+  verification:
+    status: simulated
+    evidence_refs:
+    - ntt_gpu_raw.yaml
+    semantic_hash: sha256:0c85b72f2ec77a545d8217d98f14535d6f4cfb13a82e6591f917eb4bc6c2c733
+    payload_hash: sha256:80337a2ef3600e41ee9f7429c0d2be2a5e30e9813d47cd00adcf5bea0388a899
+    signature: null
+- capability_id: cap-hokkaido-node-mock-compute
+  resource_type: compute
+  provider:
+    provider_id: HOKKAIDO-NODE-MOCK
+    operator_name: null
+    adapter_id: demo-adapter
+    adapter_version: 0.1.0
+  location:
+    region: hokkaido
+    zone: null
+    site_id: null
+    grid_area: hokkaido
+    jurisdiction: JP
+  availability:
+    state: available
+    quantity: 64
+    unit: gpu
+    valid_from: &id003 2026-08-14 09:00:00+09:00
+    valid_until: null
+    observed_at: *id003
+  semantics:
+    capability: schedulable_gpu
+    availability_definition: schedulable_now
+    interruptible: true
+    deferrable: true
+    movable: true
+    latency_class: low
+    confidence: 1.0
+    unknown_fields: []
+  constraints:
+    gpu_model: H200
+    network_gbps: 100
+    latency_to_tokyo_ms: 18
+    carbon_intensity_gco2_kwh: null
+  provenance:
+    source_type: simulated
+    source_id: hokkaido_gpu_bess_raw.yaml
+    source_uri: null
+    observed_by: demo-adapter
+  verification:
+    status: simulated
+    evidence_refs:
+    - hokkaido_gpu_bess_raw.yaml
+    semantic_hash: sha256:4fd4917d017476768bbfe0a5990fe5ce6380a68ca2c3e185ed05d63726d51b45
+    payload_hash: sha256:5eaf616137c208ae4015c6ab2422d742b301666dcb99d794a15aef76e8fe5c7b
+    signature: null
+- capability_id: cap-hokkaido-node-mock-storage
+  resource_type: storage
+  provider:
+    provider_id: HOKKAIDO-NODE-MOCK
+    operator_name: null
+    adapter_id: demo-adapter
+    adapter_version: 0.1.0
+  location:
+    region: hokkaido
+    zone: null
+    site_id: null
+    grid_area: hokkaido
+    jurisdiction: JP
+  availability:
+    state: available
+    quantity: 2400
+    unit: kWh
+    valid_from: *id003
+    valid_until: null
+    observed_at: *id003
+  semantics:
+    capability: discharge_available
+    availability_definition: available_now
+    interruptible: true
+    deferrable: true
+    movable: false
+    latency_class: null
+    confidence: 1.0
+    unknown_fields: []
+  constraints: {}
+  provenance:
+    source_type: simulated
+    source_id: hokkaido_gpu_bess_raw.yaml
+    source_uri: null
+    observed_by: demo-adapter
+  verification:
+    status: simulated
+    evidence_refs:
+    - hokkaido_gpu_bess_raw.yaml
+    semantic_hash: sha256:08f5b71b30798cf88f1c2a6cffa3005d7e280762ef59ee065d43112fff25716d
+    payload_hash: sha256:ac7a20396eec71f0a82910b5eb04307fd12dca16728616174f87f5ef0b80035c
+    signature: null
+- capability_id: cap-kyushu-re-mock-compute
+  resource_type: compute
+  provider:
+    provider_id: KYUSHU-RE-MOCK
+    operator_name: null
+    adapter_id: demo-adapter
+    adapter_version: 0.1.0
+  location:
+    region: kyushu
+    zone: null
+    site_id: null
+    grid_area: kyushu
+    jurisdiction: JP
+  availability:
+    state: available
+    quantity: 16
+    unit: gpu
+    valid_from: &id004 2026-08-14 09:00:00+09:00
+    valid_until: null
+    observed_at: *id004
+  semantics:
+    capability: schedulable_gpu
+    availability_definition: schedulable_now
+    interruptible: true
+    deferrable: true
+    movable: true
+    latency_class: low
+    confidence: 1.0
+    unknown_fields: []
+  constraints:
+    gpu_model: H200
+    network_gbps: null
+    latency_to_tokyo_ms: 28
+    carbon_intensity_gco2_kwh: 110
+  provenance:
+    source_type: simulated
+    source_id: kyushu_renewable_raw.yaml
+    source_uri: null
+    observed_by: demo-adapter
+  verification:
+    status: simulated
+    evidence_refs:
+    - kyushu_renewable_raw.yaml
+    semantic_hash: sha256:434d1f1fc2bae6a2df86a43e288839f09c24781c0b04df3ce94b91932d1d745b
+    payload_hash: sha256:4fb91ab97ce96f74228b08f9a6d950316782b0269d1e889fddf46ee4c3c31379
+    signature: null
