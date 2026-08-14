@@ -1,0 +1,175 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://example.org/lopas/schemas/capability.schema.yaml"
+title: "LoPAS Capability"
+type: object
+additionalProperties: false
+required:
+  - capability_id
+  - resource_type
+  - provider
+  - location
+  - availability
+  - semantics
+  - provenance
+  - verification
+
+properties:
+  capability_id:
+    type: string
+    minLength: 1
+
+  resource_type:
+    type: string
+    enum:
+      - power
+      - compute
+      - network
+      - storage
+      - carbon
+      - cooling
+      - facility
+      - other
+
+  provider:
+    type: object
+    additionalProperties: false
+    required: [provider_id]
+    properties:
+      provider_id:
+        type: string
+      operator_name:
+        type: [string, "null"]
+      adapter_id:
+        type: [string, "null"]
+      adapter_version:
+        type: [string, "null"]
+
+  location:
+    type: object
+    additionalProperties: false
+    required: [region]
+    properties:
+      region:
+        type: string
+      zone:
+        type: [string, "null"]
+      site_id:
+        type: [string, "null"]
+      grid_area:
+        type: [string, "null"]
+      jurisdiction:
+        type: [string, "null"]
+
+  availability:
+    type: object
+    additionalProperties: false
+    required:
+      - state
+      - observed_at
+    properties:
+      state:
+        type: string
+        enum:
+          - announced
+          - planned
+          - committed
+          - operational
+          - available
+          - reserved
+          - utilized
+          - constrained
+          - unavailable
+          - delayed
+          - unknown
+      quantity:
+        type: [number, integer, "null"]
+      unit:
+        type: [string, "null"]
+      valid_from:
+        type: [string, "null"]
+        format: date-time
+      valid_until:
+        type: [string, "null"]
+        format: date-time
+      observed_at:
+        type: string
+        format: date-time
+
+  semantics:
+    type: object
+    additionalProperties: true
+    required:
+      - capability
+    properties:
+      capability:
+        type: string
+      availability_definition:
+        type: [string, "null"]
+      interruptible:
+        type: [boolean, "null"]
+      deferrable:
+        type: [boolean, "null"]
+      movable:
+        type: [boolean, "null"]
+      latency_class:
+        type: [string, "null"]
+      confidence:
+        type: [number, "null"]
+        minimum: 0
+        maximum: 1
+      unknown_fields:
+        type: array
+        items:
+          type: string
+
+  constraints:
+    type: object
+    additionalProperties: true
+
+  provenance:
+    type: object
+    additionalProperties: false
+    required:
+      - source_type
+    properties:
+      source_type:
+        type: string
+        enum:
+          - operator_api
+          - telemetry
+          - manual
+          - public_document
+          - derived
+          - simulated
+          - other
+      source_id:
+        type: [string, "null"]
+      source_uri:
+        type: [string, "null"]
+      observed_by:
+        type: [string, "null"]
+
+  verification:
+    type: object
+    additionalProperties: false
+    required:
+      - status
+    properties:
+      status:
+        type: string
+        enum:
+          - verified
+          - partially_verified
+          - media_report_only
+          - unverified
+          - simulated
+      evidence_refs:
+        type: array
+        items:
+          type: string
+      semantic_hash:
+        type: [string, "null"]
+      payload_hash:
+        type: [string, "null"]
+      signature:
+        type: [string, "null"]
