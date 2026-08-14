@@ -1,0 +1,146 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://example.org/lopas/schemas/settlement_evidence.schema.yaml"
+title: "LoPAS Settlement Evidence"
+type: object
+additionalProperties: false
+required:
+  - settlement_evidence_id
+  - workload_ref
+  - route_ref
+  - usage
+  - impact
+  - evidence
+  - verification
+
+properties:
+  settlement_evidence_id:
+    type: string
+
+  workload_ref:
+    type: string
+
+  route_ref:
+    type: string
+
+  execution_receipt_refs:
+    type: array
+    items:
+      type: string
+
+  usage:
+    type: object
+    additionalProperties: true
+    properties:
+      compute:
+        type: object
+        additionalProperties: true
+        properties:
+          gpu_seconds:
+            type: [number, "null"]
+          gpu_model:
+            type: [string, "null"]
+      energy:
+        type: object
+        additionalProperties: true
+        properties:
+          kwh:
+            type: [number, "null"]
+          peak_kw:
+            type: [number, "null"]
+      storage:
+        type: object
+        additionalProperties: true
+        properties:
+          discharged_kwh:
+            type: [number, "null"]
+          charged_kwh:
+            type: [number, "null"]
+      network:
+        type: object
+        additionalProperties: true
+        properties:
+          transferred_gb:
+            type: [number, "null"]
+          average_latency_ms:
+            type: [number, "null"]
+
+  impact:
+    type: object
+    additionalProperties: true
+    properties:
+      grid_contribution_kwh:
+        type: [number, "null"]
+      curtailed_or_shifted_kwh:
+        type: [number, "null"]
+      cost_before_jpy:
+        type: [number, "null"]
+      cost_after_jpy:
+        type: [number, "null"]
+      carbon_before_kg:
+        type: [number, "null"]
+      carbon_after_kg:
+        type: [number, "null"]
+
+  valuation:
+    type: object
+    additionalProperties: true
+    properties:
+      compute_value_jpy:
+        type: [number, "null"]
+      energy_value_jpy:
+        type: [number, "null"]
+      storage_value_jpy:
+        type: [number, "null"]
+      network_value_jpy:
+        type: [number, "null"]
+      grid_service_value_jpy:
+        type: [number, "null"]
+      carbon_value_jpy:
+        type: [number, "null"]
+      total_value_jpy:
+        type: [number, "null"]
+
+  evidence:
+    type: object
+    additionalProperties: false
+    required:
+      - evidence_refs
+    properties:
+      evidence_refs:
+        type: array
+        items:
+          type: string
+      measurement_window_start:
+        type: [string, "null"]
+        format: date-time
+      measurement_window_end:
+        type: [string, "null"]
+        format: date-time
+      attestors:
+        type: array
+        items:
+          type: string
+
+  verification:
+    type: object
+    additionalProperties: false
+    required:
+      - status
+    properties:
+      status:
+        type: string
+        enum:
+          - verified
+          - partially_verified
+          - disputed
+          - unverified
+          - simulated
+      discrepancy:
+        type: object
+        additionalProperties: true
+      settlement_ready:
+        type: boolean
+      verifier_id:
+        type: [string, "null"]
+      evidence_hash:
+        type: [string, "null"]
