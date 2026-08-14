@@ -1,0 +1,9 @@
+provider: NTT-GPU-MOCK
+region: tokyo
+timestamp: 2026-08-14T09:00:00+09:00
+gpu_model: H200
+gpu_available: 24
+power_estimate_kw: 650
+network_gbps: 100
+status: available
+verification: simulated
