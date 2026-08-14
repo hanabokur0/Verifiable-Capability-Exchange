@@ -1,0 +1,104 @@
+- receipt_id: receipt-capability-proof-001
+  receipt_type: capability
+  issued_at: '2026-08-14T09:00:30+09:00'
+  subject:
+    subject_id: HOKKAIDO-NODE-MOCK
+    subject_type: compute_node
+  claim:
+    statement: selected_node_capability_was_available
+    value: true
+    unit: null
+    semantics:
+      capability_refs:
+      - cap-hokkaido-node-mock-compute
+  evidence:
+    evidence_refs:
+    - cap-hokkaido-node-mock-compute
+    encrypted: true
+    encryption:
+      algorithm: AES-256-GCM
+      nonce: GlJyXA0kwNImqWN+
+      ciphertext: QNh7g2LxFIPZaT02uYbn2AN2n6X8ZfzPimyppsYS8YoTyUq7exvYhbTecaf4M0cxEOZV5hV34m7JnraDOQl9L3T0PJKRwr3mARb89yBMJseuLP/9//MUX81pMp8eXjdAaMEx36XwJaHf8TY/MoZ5OcJwnAxH4rE5M5ALUOPRsPkgEz1FYDZnHIqlCjnAMDVl/Va82Hf7evv7kFikbVeDaXhMmR58hMH2NIsigKPeoRLv4HLF47Seeyg0OlWVoP525RqApsDEAeN/8XyKLg3WE3SztZMtlPJNUPFD5nkhV1+i67ibSig=
+      aad: bG9wYXMtcmVjZWlwdC1yb3V0ZS0wMDE=
+  integrity:
+    canonicalization: canonical-json-sorted-v1
+    semantic_hash: sha256:f75764cfed3f28f545c7f2805fcef5686a57d843965bbc864e13fada05e57571
+    payload_hash: sha256:0c6e672758f2d8a4e76ed50c7b722c4bec2dc7eaa0cb5d082136d5378357e90f
+    previous_receipt_hash: null
+    signer_id: demo-issuer-01
+    signature_algorithm: Ed25519
+    signature: mohwriB4LTG5ml2xNErp4dpJa0SEu0oy50kcXUdb9a1ToYrSx9Hi4J7NvT0kkIMfGhg/7I/4n0R3NrMwnB6yDw==
+    timestamp_proof: null
+  verification:
+    status: simulated
+    verifier_id: independent-verifier-01
+    verified_at: null
+    notes: encrypted evidence; signed public claim
+- receipt_id: receipt-routing-proof-002
+  receipt_type: routing
+  issued_at: '2026-08-14T09:01:05+09:00'
+  subject:
+    subject_id: route-001
+    subject_type: route
+  claim:
+    statement: workload_routed
+    value:
+      workload_id: wl-001
+      selected_node: HOKKAIDO-NODE-MOCK
+    unit: null
+    semantics:
+      decision_reason: highest_composite_score_under_constraints
+  evidence:
+    evidence_refs:
+    - receipt-capability-proof-001
+    encrypted: false
+    encryption: {}
+  integrity:
+    canonicalization: canonical-json-sorted-v1
+    semantic_hash: sha256:c2a2b95cda667eab50720558dafbb425f5b77c606b4aa63a5eafd2d3eece2278
+    payload_hash: sha256:abeae835f5fce100d21c2e0162074fdbd21186dd0bdb50eeeefaed1504a45dd8
+    previous_receipt_hash: sha256:0c6e672758f2d8a4e76ed50c7b722c4bec2dc7eaa0cb5d082136d5378357e90f
+    signer_id: demo-router-01
+    signature_algorithm: Ed25519
+    signature: mH5E/o5sOHsLpqn2TnoICyL7dr84A84xgqJ+qmElMSOpNgqVa99EIBqetIJuXyV94Dwe5Disrjxja/H1G/9bDg==
+    timestamp_proof: null
+  verification:
+    status: simulated
+    verifier_id: independent-verifier-01
+    verified_at: null
+    notes: hash chained to capability proof
+- receipt_id: receipt-settlement-evidence-003
+  receipt_type: settlement
+  issued_at: '2026-08-14T10:36:00+09:00'
+  subject:
+    subject_id: settle-001
+    subject_type: settlement_evidence
+  claim:
+    statement: settlement_evidence_generated
+    value:
+      workload_ref: wl-001
+      route_ref: route-001
+      settlement_ready: false
+    unit: null
+    semantics:
+      execution_only: false
+      payment_executed: false
+  evidence:
+    evidence_refs:
+    - receipt-routing-proof-002
+    encrypted: false
+    encryption: {}
+  integrity:
+    canonicalization: canonical-json-sorted-v1
+    semantic_hash: sha256:7d66a0dabcaf059d0541b966cc1ba646b6b9a956b4495b3dc8b83c332cc9c3fa
+    payload_hash: sha256:dfd4848fea6a65961c1b586e19fd515dab32007be242e4113bf4d392b716c8fe
+    previous_receipt_hash: sha256:abeae835f5fce100d21c2e0162074fdbd21186dd0bdb50eeeefaed1504a45dd8
+    signer_id: demo-settlement-attestor-01
+    signature_algorithm: Ed25519
+    signature: cUUpA7w6aqo0cvTNkuVhr8U2mU4ptoRGh4nY0ekL+2X3EHm404WeS9FzOhDxorTAzKeNoLWwFdyoMhGaGVlTAA==
+    timestamp_proof: null
+  verification:
+    status: simulated
+    verifier_id: independent-verifier-01
+    verified_at: null
+    notes: settlement evidence only; no payment
