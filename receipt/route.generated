@@ -1,0 +1,46 @@
+route_id: route-001
+workload_ref: wl-001
+observed_at: '2026-08-14T09:01:00+09:00'
+candidates:
+- node_id: NTT-GPU-MOCK
+  capability_refs:
+  - cap-ntt-gpu-mock-compute
+  eligibility: eligible
+  rejection_reasons: []
+  scores:
+    composite: 4.5
+- node_id: HOKKAIDO-NODE-MOCK
+  capability_refs: &id001
+  - cap-hokkaido-node-mock-compute
+  eligibility: eligible
+  rejection_reasons: []
+  scores:
+    composite: 41.9
+- node_id: KYUSHU-RE-MOCK
+  capability_refs:
+  - cap-kyushu-re-mock-compute
+  eligibility: eligible
+  rejection_reasons: []
+  scores:
+    composite: -6.7
+selected:
+  node_id: HOKKAIDO-NODE-MOCK
+  capability_refs: *id001
+decision:
+  status: selected
+  reason: highest_composite_score_under_constraints
+  policy_id: demo-router
+  policy_version: 0.1.0
+  decided_by: reference-router
+  human_approval: false
+  confidence: 0.95
+expected_impact:
+  energy_kwh: 450
+  cost_jpy: null
+  carbon_kg: null
+  latency_ms: null
+validation:
+  status: simulated
+  evidence_refs: *id001
+  decision_hash: sha256:5133dc34cbb4aed7ef794e516c2db9973f0e417f77683994eeb0a5c12f5b8413
+  signature: null
