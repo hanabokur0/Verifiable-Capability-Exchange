@@ -1,0 +1,38 @@
+adapter_id: adapter-ntt-mock
+version: 0.1.0
+source_system:
+  provider_id: NTT-GPU-MOCK
+  source_type: yaml
+output_contract:
+  schema: capability.schema.yaml
+  resource_types:
+  - compute
+  - network
+  semantic_profile: lopas-capability-v0.2
+transformation:
+  mapping_version: 0.1.0
+  field_map:
+    gpu_available: availability.quantity
+    region: location.region
+  unit_conversions: {}
+  derived_fields:
+    availability.unit: gpu
+    semantics.capability: schedulable_gpu
+  unknown_policy: preserve_as_unknown
+disclosure:
+  public_fields:
+  - availability
+  - location
+  - semantics
+  partner_fields: []
+  private_fields: []
+  encrypt_private_payload: false
+trust:
+  signer_required: false
+  hash_required: true
+  signature_algorithm: null
+  canonicalization: sorted-json-v1
+  attestor_required: false
+runtime:
+  enabled: true
+  fail_closed: false
