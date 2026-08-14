@@ -1,0 +1,20 @@
+ok: true
+checks:
+- receipt_id: receipt-capability-proof-001
+  payload_hash_ok: true
+  signature_ok: true
+  ok: true
+  chain_link_ok: true
+- receipt_id: receipt-routing-proof-002
+  payload_hash_ok: true
+  signature_ok: true
+  ok: true
+  chain_link_ok: true
+- receipt_id: receipt-settlement-evidence-003
+  payload_hash_ok: true
+  signature_ok: true
+  ok: true
+  chain_link_ok: true
+encrypted_evidence_roundtrip_ok: true
+public_key_file: crypto/keys/issuer_ed25519_public.key
+security_profile: lopas-security-v0.3
