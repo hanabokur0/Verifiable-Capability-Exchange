@@ -1,0 +1,33 @@
+receipt_id: receipt-route-001
+receipt_type: routing
+issued_at: '2026-08-14T09:01:05+09:00'
+subject:
+  subject_id: route-001
+  subject_type: route
+claim:
+  statement: workload_routed
+  value:
+    workload_id: wl-001
+    selected_node: HOKKAIDO-NODE-MOCK
+  unit: null
+  semantics:
+    reason: constraint_satisfied_and_best_score
+evidence:
+  evidence_refs:
+  - cap-hokkaido-node-mock-compute
+  encrypted: false
+  encryption: {}
+integrity:
+  canonicalization: sorted-json-v1
+  semantic_hash: sha256:c2a2b95cda667eab50720558dafbb425f5b77c606b4aa63a5eafd2d3eece2278
+  payload_hash: sha256:6a661cf225547ecd9b7accfd29778d6f9cde58e384752baf10265afb6bec4d25
+  previous_receipt_hash: null
+  signer_id: reference-router
+  signature_algorithm: null
+  signature: null
+  timestamp_proof: null
+verification:
+  status: simulated
+  verifier_id: reference-verifier
+  verified_at: '2026-08-14T09:01:06+09:00'
+  notes: simulation only
